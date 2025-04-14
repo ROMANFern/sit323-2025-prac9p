@@ -5,7 +5,7 @@ This repository contains the configuration files and instructions for deploying 
 ## Prerequisites
 
 - Docker Desktop with Kubernetes enabled
-- Helm installed (`winget install Helm.Helm` or `brew install helm`)
+- Helm installed (`winget install Helm.Helm`)
 - `kubectl` CLI
 - Docker image: `romanfern/node-web-app`
 
