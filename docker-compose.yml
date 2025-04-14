@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    image: romanfern/node-web-app
+    ports:
+      - "49160:8080"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - NODE_ENV=production
