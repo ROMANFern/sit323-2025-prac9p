@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: node-web-app-deployment
+  labels:
+    app: node-web-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: node-web-app
@@ -13,7 +15,24 @@ spec:
         app: node-web-app
     spec:
       containers:
-        - name: node-web-app
-          image: romanfern/node-web-app
+        - name: web-app
+          image: romanfern/task-9p-app:latest
           ports:
             - containerPort: 8080
+          env:
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongo-root-username
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongo-root-password
+            - name: MONGO_HOST
+              value: mongodb
+            - name: MONGO_PORT
+              value: "27017"
+            - name: MONGO_DATABASE
+              value: nodeapp
